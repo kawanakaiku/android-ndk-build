@@ -30,11 +30,11 @@ jobs:
         docker run -td --rm -v $(pwd):/root/debugger --name=builder ubuntu:22.04
         _BUILDER="docker exec -t builder"
         $_BUILDER apt update
-        $_BUILDER apt install -yq build-essential patch repo zlib1g-dev python python3 git m4 texinfo bison flex gcc-4.8 g++-4.8
-        $_BUILDER ln -s /usr/bin/gcc-4.8 /root/debugger/gcc
-        $_BUILDER ln -s /usr/bin/gcc-4.8 /root/debugger/cc
-        $_BUILDER ln -s /usr/bin/g++-4.8 /root/debugger/g++
-        $_BUILDER ln -s /usr/bin/g++-4.8 /root/debugger/cpp
+        $_BUILDER apt install -yq build-essential patch repo zlib1g-dev python3 git m4 texinfo bison flex gcc g++
+        $_BUILDER ln -s /usr/bin/gcc /root/debugger/gcc
+        $_BUILDER ln -s /usr/bin/gcc /root/debugger/cc
+        $_BUILDER ln -s /usr/bin/g++ /root/debugger/g++
+        $_BUILDER ln -s /usr/bin/g++ /root/debugger/cpp
         $_BUILDER bash -c "cd /root/debugger/toolchain/gcc; 
                           export PATH=/root/debugger:$PATH;
                           sed -i 's/c,c++/c,c++,fortran/g' build-gcc.sh;
