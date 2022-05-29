@@ -2,7 +2,7 @@ name: Build Toolchain
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - '**'
   pull_request:
