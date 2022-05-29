@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     name: Build Toolchain
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     steps:
     - name: Checkout Repo
       uses: actions/checkout@main
@@ -27,7 +27,7 @@ jobs:
         repo init -u https://android.googlesource.com/platform/manifest -b gcc
         repo sync
         repo forall -c git checkout ndk-release-r17 || true
-        docker run -td --rm -v $(pwd):/root/debugger --name=builder ubuntu:16.04
+        docker run -td --rm -v $(pwd):/root/debugger --name=builder ubuntu:22.04
         _BUILDER="docker exec -t builder"
         $_BUILDER apt update
         $_BUILDER apt install -yq build-essential patch repo zlib1g-dev python python3 git m4 texinfo bison flex gcc-4.8 g++-4.8
@@ -39,7 +39,7 @@ jobs:
                           export PATH=/root/debugger:$PATH;
                           sed -i 's/c,c++/c,c++,fortran/g' build-gcc.sh;
                           patch -p1 -F 10 < ../../android-gfortran/x86.diff;
-                          ./build.py --host windows64;"
+                          ./build.py --host linux;"
     - name: Waiting for debugger
       if: ${{ failure() }}
       uses: mxschmitt/action-tmate@v3
