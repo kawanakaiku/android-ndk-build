@@ -30,7 +30,7 @@ jobs:
         docker run -td --rm -v $(pwd):/root/debugger --name=builder ubuntu:22.04
         _BUILDER="docker exec -t builder"
         $_BUILDER apt update
-        $_BUILDER apt install -yq build-essential patch repo zlib1g-dev python3 git m4 texinfo bison flex gcc g++
+        $_BUILDER apt install -yq build-essential patch repo zlib1g-dev python-is-python3 python3 git m4 texinfo bison flex gcc g++
         $_BUILDER ln -s /usr/bin/gcc /root/debugger/gcc
         $_BUILDER ln -s /usr/bin/gcc /root/debugger/cc
         $_BUILDER ln -s /usr/bin/g++ /root/debugger/g++
