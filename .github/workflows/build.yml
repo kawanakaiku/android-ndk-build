@@ -39,7 +39,7 @@ jobs:
                           export PATH=/root/debugger:$PATH;
                           sed -i 's/c,c++/c,c++,fortran/g' build-gcc.sh;
                           patch -p1 -F 10 < ../../android-gfortran/x86.diff;
-                          ./build.py --host linux;"
+                          ./build.py --host windows64;"
     - name: Waiting for debugger
       if: ${{ failure() }}
       uses: mxschmitt/action-tmate@v3
